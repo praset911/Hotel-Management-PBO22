@@ -1,9 +1,16 @@
 package entity;
 
 public class StaffEntity extends UserEntity {
-
     public String password;
-        return this.password;
+
+    public StaffEntity(String nama_staff, String nik, String alamat, String telp, String password)
+    {
+        super(nama_staff,nik,alamat,telp);
+        this.password=password;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     @Override
