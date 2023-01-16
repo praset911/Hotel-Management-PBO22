@@ -20,16 +20,15 @@ public class ReservasiModel {
     public static void checkOut(int indexReservasi) {
         ReservasiEntity reservasi = ArrayReservasi.get(indexReservasi);
         reservasi.setTanggalCheckOut(DateString.now());
-//        KamarEntity kamar = reservasi.kamar;
-
         ArrayReservasi.set(indexReservasi, reservasi);
     }
+
 
     public static int cariReservasibyKodeKamar(String kodeKamar) {
         int i = -1;
         for (ReservasiEntity reservasi : ArrayReservasi) {
             i += 1;
-            if (reservasi.kamar.getKodeKamar().equals(kodeKamar)) {
+            if ((reservasi.kamar.getKodeKamar().equals(kodeKamar)) && (reservasi.TanggalCheckOut.equals("Belum CheckOut"))) {
                 if (!reservasi.kamar.getStatus()) {
                     return i;
                 }

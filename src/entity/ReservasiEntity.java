@@ -7,7 +7,7 @@ public class ReservasiEntity {
     public KamarEntity kamar;
     public int malam;
     public String TanggalCheckIn;
-    public String TanggalCheckOut;
+    public String TanggalCheckOut = "Belum CheckOut";
 
     public ReservasiEntity(TamuEntity tamu, KamarEntity kamar, int malam)
     {
@@ -16,7 +16,6 @@ public class ReservasiEntity {
         this.malam=malam;
         this.TanggalCheckIn= DateString.now();
     }
-
     public void setTanggalCheckOut(String tanggalCheckOut) {
         this.TanggalCheckOut = tanggalCheckOut;
     }

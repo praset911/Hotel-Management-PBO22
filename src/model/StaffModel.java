@@ -1,5 +1,6 @@
 package model;
 
+import entity.KamarEntity;
 import entity.StaffEntity;
 
 import java.util.ArrayList;
@@ -25,6 +26,15 @@ public class StaffModel {
     public static void addAccount(String nama,String nik,String alamat,String telp,String password){
         StaffEntity staff = new StaffEntity(nama,nik,alamat,telp,password);
         StaffModel.ArrayStaff.add(staff);
+    }
+
+    public static int cariDataStaff (String nip){
+        for (StaffEntity dataStaff : ArrayStaff){
+            if(dataStaff.getNik().equals(nip)){
+                return 1;
+            }
+        }
+        return -1;
     }
 
 }

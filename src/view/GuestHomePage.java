@@ -53,17 +53,18 @@ public class GuestHomePage {
         String kodeKamar = input.nextLine();
         KamarEntity kamarcari = KamarModel.cariDataKamar(kodeKamar);
         if(kamarcari!=null){
-            if(kamarcari.getStatus()==false){
+            if(!kamarcari.getStatus()){
                 System.out.println("KAMAR SUDAH DI PESAN,PILIH KAMAR LAIN !");
                 menuTamu();
             }
             else{
                 System.out.println("Menginap Berapa Malam       : ");
                 int malam = input.nextInt();
+                input.nextLine();
+                kamarcari.setStatus(false);
                 TamuEntity tamu = new TamuEntity(nama,nip,telp,alamat);
                 ReservasiModel.checkIn(tamu, kamarcari, malam);
                 System.out.println("BERHASIL MEMESAN KAMAR !");
-                kamarcari.setStatus(false);
             }
         }
         else{
@@ -71,30 +72,25 @@ public class GuestHomePage {
             System.out.println();
             checkIn();
         }
-        
+
     }
 
     private void checkOut() {
         System.out.println("==========<CHECK OUT>==========");
-
-        
         String kodeKamar;
-
         System.out.print("Masukan Kode Kamar  : ");
         kodeKamar = input.nextLine();
-        KamarEntity kamarcari= KamarModel.cariDataKamar(kodeKamar);
-
+        KamarEntity kamarCari = KamarModel.cariDataKamar(kodeKamar);
         int indexReservasi = ReservasiModel.cariReservasibyKodeKamar(kodeKamar);
         if (indexReservasi > -1) {
+            kamarCari.setStatus(true);
             ReservasiModel.checkOut(indexReservasi);
-
             System.out.println("BERHASIL CHECK OUT");
-            kamarcari.setStatus(true);
+
         } else {
             System.out.println("Data Tidak Ditemukan !");
         }
     }
-
     private void dataReservasi() {
         for (ReservasiEntity reservasi : ReservasiModel.ArrayReservasi) {
             System.out.println("==============================================");

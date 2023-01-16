@@ -21,7 +21,7 @@ public class KamarModel {
             System.out.println("JENIS KAMAR                   : " + datakamar.getJenisKamar());
             System.out.println("HARGA PER MALAM               : " + datakamar.getHargaPerMalam());
             System.out.print("STATUS                        : ");
-            if(datakamar.getStatus()==true){
+            if(datakamar.getStatus()){
                 System.out.println("TERSEDIA");
                 System.out.println();
             }
@@ -50,14 +50,4 @@ public class KamarModel {
         ArrayKamar.remove(kamarCari);
     }
 
-    public static int indexDataKamar(KamarEntity indexkamar){
-        int index = ArrayKamar.indexOf(indexkamar);
-        return index;
-    }
-
-    public static void editDataKamar(KamarEntity kamarCari) {
-        int index = indexDataKamar(kamarCari);
-        ArrayKamar.get(index).setKodeKamar(kamarCari.getKodeKamar());
-        ArrayKamar.get(index).setJenisKamar(kamarCari.getJenisKamar());
-    }
 }
